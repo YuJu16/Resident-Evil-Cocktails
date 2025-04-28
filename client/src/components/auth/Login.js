@@ -28,53 +28,79 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <motion.div 
-        className="auth-form"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2>Connexion</h2>
-        
-        {error && <div className="error-message">{error}</div>}
-        
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={onChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={onChange}
-              required
-            />
-          </div>
-          
-          <button type="submit" className="btn btn-block">
-            Se connecter
-          </button>
-        </form>
-        
-        <div className="auth-footer">
-          <p>
-            Vous n'avez pas de compte ? <Link to="/register">S'inscrire</Link>
-          </p>
+    <div className="login-page">
+      <div className="login-container">
+        <div className="logo-container">
+          <img src="/img/logo.png" alt="Umbrella Bar Logo" className="login-logo" />
         </div>
-      </motion.div>
+        
+        <div className="login-content">
+          <div className="login-form-container">
+            <h1>Bienvenue sur Umbrella Bar</h1>
+            <p className="login-subtitle">Infecte-toi et découvre les cocktails qui feront muter tes soirées !</p>
+            
+            {error && <div className="error-message">{error}</div>}
+            
+            <div className="login-with-google">
+              <button className="google-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" />
+                Continuer avec Google
+              </button>
+            </div>
+            
+            <div className="login-divider">
+              <span className="divider-line"></span>
+              <span className="divider-text">Ou</span>
+              <span className="divider-line"></span>
+            </div>
+            
+            <form onSubmit={onSubmit}>
+              <div className="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              
+              <div className="form-group">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  placeholder="Mot de passe"
+                  required
+                />
+              </div>
+              
+              <div className="remember-me">
+                <input type="checkbox" id="remember" name="remember" />
+                <label htmlFor="remember">Se souvenir de moi pendant 30 jours</label>
+              </div>
+              
+              <button type="submit" className="login-btn">
+                Se connecter
+              </button>
+            </form>
+            
+            <div className="auth-footer">
+              <p>
+                Vous n'avez pas de compte? <Link to="/register">Inscrivez-vous</Link>
+              </p>
+            </div>
+          </div>
+          
+          <div className="login-image-container">
+            <img src="/img/imgCo.png" alt="Resident Evil" className="login-image" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

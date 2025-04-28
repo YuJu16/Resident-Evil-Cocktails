@@ -22,7 +22,7 @@ const Header = () => {
           transition={{ duration: 0.5 }}
         >
           <Link to="/">
-            <img src="../../../public/img/logo.png" alt="Umbrella Bar Logo" />  
+            <img src="/img/logo.png" alt="Umbrella Bar Logo" style={{ width: '120px', height: 'auto' }} />
           </Link>
         </motion.div>
 

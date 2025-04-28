@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 // Composants
@@ -20,6 +20,7 @@ import './styles/App.scss'; // Décommenté pour appliquer les styles
 function App() {
   const [cocktails, setCocktails] = useState([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     // Charger les cocktails depuis l'API
@@ -37,11 +38,16 @@ function App() {
     fetchCocktails();
   }, []);
 
+  // Vérifier si l'utilisateur est sur la page de connexion
+  const isLoginPage = location.pathname === '/login';
+  const isRegisterPage = location.pathname === '/register';
+  const hideHeaderFooter = isLoginPage || isRegisterPage;
+
   return (
     <AuthProvider>
       <div className="app">
-        <Header />
-        <main className="container">
+        {!hideHeaderFooter && <Header />}
+        <main className={hideHeaderFooter ? "container-full" : "container"}>
           <Routes>
             <Route path="/" element={<Home cocktails={cocktails} loading={loading} />} />
             <Route path="/cocktail/:id" element={<CocktailDetail />} />
@@ -50,7 +56,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        <Footer />
+        {!hideHeaderFooter && <Footer />}
       </div>
     </AuthProvider>
   );
