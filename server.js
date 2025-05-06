@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const passport = require('passport');
 require('dotenv').config();
 
 // Initialisation de l'application Express
@@ -10,6 +11,12 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Routes API
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth/google', require('./routes/auth-google'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/cocktails', require('./routes/cocktails'));
 
 // Configuration de MongoDB
 const connectDB = async () => {
@@ -46,56 +53,7 @@ const cocktailSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 const Cocktail = mongoose.model('Cocktail', cocktailSchema);
 
-// Routes API
-// Route pour obtenir tous les cocktails
-app.get('/api/cocktails', async (req, res) => {
-  try {
-    const cocktails = await Cocktail.find().sort({ date: -1 });
-    res.json(cocktails);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Erreur serveur');
-  }
-});
-
-// Route pour obtenir un cocktail spécifique
-app.get('/api/cocktails/:id', async (req, res) => {
-  try {
-    const cocktail = await Cocktail.findById(req.params.id);
-    if (!cocktail) {
-      return res.status(404).json({ msg: 'Cocktail non trouvé' });
-    }
-    res.json(cocktail);
-  } catch (err) {
-    console.error(err.message);
-    if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Cocktail non trouvé' });
-    }
-    res.status(500).send('Erreur serveur');
-  }
-});
-
-// Route pour créer un cocktail
-app.post('/api/cocktails', async (req, res) => {
-  const { name, image, ingredients, recipe, themeReference, description } = req.body;
-
-  try {
-    const newCocktail = new Cocktail({
-      name,
-      image,
-      ingredients,
-      recipe,
-      themeReference,
-      description
-    });
-
-    const cocktail = await newCocktail.save();
-    res.json(cocktail);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Erreur serveur');
-  }
-});
+// Les routes API sont maintenant gérées par les fichiers de routes importés
 
 // Servir les assets statiques en production
 if (process.env.NODE_ENV === 'production') {

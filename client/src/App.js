@@ -16,6 +16,7 @@ import { AuthProvider } from './context/AuthContext';
 
 // Styles
 import './styles/App.scss'; // Décommenté pour appliquer les styles
+import './styles/auth.scss'; // Styles pour l'authentification
 
 function App() {
   const [cocktails, setCocktails] = useState([]);
@@ -36,6 +37,17 @@ function App() {
     };
 
     fetchCocktails();
+
+    // Vérifier si un token est présent dans l'URL (après authentification Google)
+    const query = new URLSearchParams(window.location.search);
+    const token = query.get('token');
+    
+    if (token) {
+      // Stocker le token dans localStorage
+      localStorage.setItem('token', token);
+      // Rediriger vers la page d'accueil sans le token dans l'URL
+      window.history.pushState({}, document.title, '/');
+    }
   }, []);
 
   // Vérifier si l'utilisateur est sur la page de connexion

@@ -1,0 +1,82 @@
+/* Styles pour les composants d'authentification */
+
+/* Styles pour la force du mot de passe */
+.password-strength {
+  margin-top: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.password-strength.faible {
+  background-color: #ffcccc;
+  color: #cc0000;
+}
+
+.password-strength.moyen {
+  background-color: #fff4cc;
+  color: #cc7a00;
+}
+
+.password-strength.fort {
+  background-color: #ccffcc;
+  color: #007a00;
+}
+
+.password-requirements {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Message de succès */
+.success-message {
+  background-color: #ccffcc;
+  border: 1px solid #007a00;
+  color: #007a00;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.success-message h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Message d'erreur */
+.error-message {
+  background-color: #ffcccc;
+  border: 1px solid #cc0000;
+  color: #cc0000;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+/* Styles pour les icônes dans le header */
+.user-actions-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.icon-link:hover {
+  color: #e60000; /* Couleur rouge Umbrella */
+}
+
+.icon-link svg {
+  width: 20px;
+  height: 20px;
+}
