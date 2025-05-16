@@ -18,16 +18,8 @@ app.use('/api/auth/google', require('./routes/auth-google'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/cocktails', require('./routes/cocktails'));
 
-// Configuration de MongoDB
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/resident-evil-cocktails');
-    console.log('MongoDB connecté avec succès');
-  } catch (err) {
-    console.error('Erreur de connexion à MongoDB:', err.message);
-    process.exit(1);
-  }
-};
+// Importer la configuration de la base de données
+const connectDB = require('./config/db');
 
 // Connexion à la base de données
 connectDB();

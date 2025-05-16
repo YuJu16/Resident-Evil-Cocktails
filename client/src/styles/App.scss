@@ -46,7 +46,7 @@
       align-items: center;
       
       img {
-        height: 60px;
+        height: 100px;
         margin-right: 1rem;
       }
       
@@ -219,25 +219,22 @@
 
 // Styles pour la page de connexion selon la maquette
 .login-page {
-  min-height: 100vh;  // Au lieu de height: 100vh
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   background-color: $background-color;
-  padding: 1rem;  // Ajout d'un padding pour éviter que le contenu ne colle aux bords
-  overflow-y: auto;  // Permet le défilement si nécessaire
-  box-sizing: border-box;
+  padding: 2rem 0;
+  width: 100%;
 }
 
 .login-container {
   width: 100%;
-  max-width: 1200px;  // Limite la largeur maximale
-  min-height: 90vh;  // Au lieu de height: 100%
   display: flex;
   flex-direction: row;
   background-color: $background-color;
-  margin: auto;  // Centre le contenu
-  gap: 2rem;  // Espace entre les colonnes
+  margin: 0;
+  gap: 0;
+  align-items: center;
 }
 
 .login-form-side {
@@ -245,186 +242,181 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
-  min-height: 0;  // Permet au contenu de se réduire si nécessaire
-  overflow-y: auto;  // Permet le défilement si nécessaire
+  align-items: center;
+  padding: 1rem;
+  width: 50%;
+  min-width: 50%;
+  max-width: 50%;
+  height: auto;
 }
 
 .login-image-container {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;  // Cache le débordement de l'image
-  
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+  position: relative;
+  min-width: 50%;
+  background: #000;
+  overflow: hidden;
+}
+
+.login-image-container img, .login-image-container .login-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .logo-container {
   text-align: center;
-  margin-bottom: 0.75rem;
-  
+  margin-bottom: 3.5rem;
+  margin-top: -30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .login-logo {
-    height: 80px;
+    height: 35px;
+    max-width: 160px;
+    margin: 0 auto;
+    margin-right: 0px;
   }
 }
 
 .login-content {
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
+  margin-top: -40px;
+  padding: 0 !important;
+  line-height: 1.2 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .login-form-container {
-  width: 100%;
-  
+  width: 85%;
+  margin: 0 auto;
+  .login-form-container h1 {
+    padding-left: 0;
+  }
   h1 {
-    font-size: 1.7rem;
-    margin-bottom: 0.4rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
     color: $text-color;
-    white-space: nowrap;
+    white-space: normal;
     text-align: center;
     width: 100%;
-    transform: translateX(-30px); 
+    transform: none;
+    letter-spacing: 1px;
   }
-  
   .login-subtitle {
     color: $text-color;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     font-size: 0.9rem;
-  }
-}
-
-.login-with-google {
-  margin-bottom: 0.6rem;
-  
-  .google-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.45rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 30px;
-    color: $text-color;
-    cursor: pointer;
-    font-size: 0.9rem;
-    
-    svg {
-      margin-right: 8px;
-      transform: scale(0.9);
-    }
-    
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-  }
-}
-
-.login-divider {
-  display: flex;
-  align-items: center;
-  margin: 0.4rem 0;
-  
-  .divider-line {
-    flex: 1;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .divider-text {
-    padding: 0 0.8rem;
-    color: $text-color;
-    font-size: 0.9rem;
+    text-align: center;
   }
 }
 
 .login-form-container .form-group {
-  margin-bottom: 0.6rem;
-  
+  margin-bottom: 0.7rem;
   input {
     width: 100%;
-    padding: 0.5rem 1rem;
-    border-radius: 30px;
+    padding: 0.7rem 1rem;
+    border-radius: 18px;
     border: none;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255,255,255,0.08);
     color: $text-color;
     font-size: 0.95rem;
-    
     &::placeholder {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255,255,255,0.5);
     }
-    
     &:focus {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255,255,255,0.15);
       outline: none;
     }
   }
 }
 
-.remember-me {
+// Styles pour les cases à cocher dans le formulaire de connexion
+.login-form-container input[type="checkbox"] {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.login-form-container .checkbox-group {
   display: flex;
   align-items: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: $text-color;
+  opacity: 0.9;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 0.5rem;
+}
+
+// Style pour les cases à cocher dans la maquette
+.login-form-container input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  margin-right: 8px;
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  position: relative;
+  cursor: pointer;
   
-  input[type="checkbox"] {
-    width: auto;
-    margin-right: 0.4rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    transform: scale(0.9);
+  &:checked {
+    background-color: $green-color;
+    border-color: $green-color;
   }
   
-  label {
-    color: $text-color;
-    font-size: 0.8rem;
-    margin: 0;
-    display: flex;
-    align-items: center;
+  &:checked:after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
-.login-btn {
+// Style pour le bouton de création de compte
+.login-form-container button {
   width: 100%;
-  padding: 0.5rem;
-  background-color: $red-color;
-  color: $text-color;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
   border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 500;
-  margin-bottom: 0.6rem;
+  background-color: $green-color;
+  color: $text-color;
   font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.8rem;
+  transition: background-color 0.3s ease;
   
   &:hover {
-    background-color: darken($red-color, 10%);
+    background-color: darken($green-color, 10%);
   }
 }
 
-.login-image-container {
-  flex: 1;
-  height: 100%;
-  overflow: hidden;
-  
-  .login-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-}
 
+// Style pour le pied de page du formulaire
 .auth-footer {
+  margin-top: 1rem;
   text-align: center;
-  margin-top: 0.5rem;
+  font-size: 0.85rem;
   
   p {
-    color: $text-color;
-    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
     
     a {
       color: $green-color;
@@ -437,6 +429,35 @@
   }
 }
 
+@media (max-width: 900px) {
+  .login-page {
+    padding: 1rem;
+  }
+  .login-container {
+    max-width: 100vw;
+    flex-direction: column;
+  }
+  .login-form-side {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    padding: 1rem;
+  }
+  .login-image-container {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .login-container {
+    max-width: 100vw;
+  }
+  .login-form-side {
+    padding: 0.5rem;
+  }
+  .login-content {
+    max-width: 100%;
+  }
+}
 // Styles pour la page d'accueil
 .home-page {
   .section-title {

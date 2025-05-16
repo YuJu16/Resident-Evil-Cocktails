@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-
 // @route   POST api/users
 // @desc    Inscrire un utilisateur
 // @access  Public
@@ -50,7 +49,14 @@ router.post('/', async (req, res) => {
     );
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Erreur serveur');
+    if (err.code === 11000) {
+      return res.status(400).json({ msg: 'Cette adresse email est déjà utilisée' });
+    }
+    if (err.name === 'ValidationError') {
+      const messages = Object.values(err.errors).map(error => error.message);
+      return res.status(400).json({ msg: messages.join(', ') });
+    }
+    res.status(500).json({ msg: 'Erreur serveur' });
   }
 });
 

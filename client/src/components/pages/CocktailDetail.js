@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import Loader from '../common/Loader';
 
 const CocktailDetail = () => {
   const { id } = useParams();
@@ -50,9 +51,7 @@ const CocktailDetail = () => {
   if (loading) {
     return (
       <div className="container">
-        <div className="loading-spinner">
-          <h2>Chargement du cocktail...</h2>
-        </div>
+        <Loader />
       </div>
     );
   }
